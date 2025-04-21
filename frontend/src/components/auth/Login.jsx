@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`https://jobdekho-02nk.onrender.com/login`, input, {
+            const res = await axios.post(`https://jobdekho-02nk.onrender.com/api/v1/userlogin`, input, {
                 headers: {
                     "Content-Type": "application/json"
                 },
