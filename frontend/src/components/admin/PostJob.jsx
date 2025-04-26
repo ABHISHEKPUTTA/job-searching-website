@@ -63,7 +63,7 @@ const PostJob = () => {
         <div>
             <Navbar />
             <div className='flex items-center justify-center w-screen my-5'>
-                <form onSubmit = {submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
+                <form onSubmit={submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
                     <div className='grid grid-cols-2 gap-2'>
                         <div>
                             <Label>Title</Label>
@@ -77,13 +77,16 @@ const PostJob = () => {
                         </div>
                         <div>
                             <Label>Description</Label>
-                            <Input
-                                type="text"
+                            <textarea
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 w-full border border-gray-300 rounded-md p-2"
+                                rows="4"
+                                maxLength="200"
+                                placeholder="Enter job description (max 00 characters)"
                             />
+                            <p className="text-xs text-gray-500 text-right">{input.description.length}/200</p>
                         </div>
                         <div>
                             <Label>Requirements</Label>
@@ -136,7 +139,7 @@ const PostJob = () => {
                             />
                         </div>
                         <div>
-                            <Label>No of Postion</Label>
+                            <Label>No of Position</Label>
                             <Input
                                 type="number"
                                 name="position"

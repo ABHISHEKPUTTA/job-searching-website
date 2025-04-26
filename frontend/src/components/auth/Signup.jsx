@@ -56,7 +56,8 @@ const Signup = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            const errorMessage = error.response?.data?.message || "Something went wrong. Please try again.";
+            toast.error(errorMessage);
         } finally{
             dispatch(setLoading(false));
         }

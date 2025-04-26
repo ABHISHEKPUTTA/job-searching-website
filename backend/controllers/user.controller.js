@@ -168,4 +168,4 @@ export const updateProfile = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
