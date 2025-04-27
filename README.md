@@ -20,4 +20,4 @@ A modern Job Portal built with the MERN stack, Shadcn UI, MongoDB, and Vite.
 
 
 
-![image alt] (https://github.com/ABHISHEKPUTTA/job-searching-website/blob/e7d69e78b352155a40634d57ff91107b40ff4ad4/signup%20page.png)
+
