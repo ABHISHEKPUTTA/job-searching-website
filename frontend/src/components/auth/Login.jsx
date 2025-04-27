@@ -28,6 +28,28 @@ const Login = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        if (!input.email.trim()) {
+            toast.error("Email is required!");
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.email)) {
+            toast.error("Please enter a valid email address!");
+            return;
+        }
+        if (!input.password) {
+            toast.error("Password is required!");
+            return;
+        }
+        if (input.password.length < 6) {
+            toast.error("Password must be at least 6 characters!");
+            return;
+        }
+        if (!input.role) {
+            toast.error("Please select a role!");
+            return;
+        }
+
         try {
             dispatch(setLoading(true));
             const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
@@ -66,7 +88,7 @@ const Login = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="abhi@gmail.com"
+                            placeholder="ENTER YOUR EMAIL"
                         />
                     </div>
 
@@ -77,7 +99,7 @@ const Login = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="********"
+                            placeholder="  ENTER YOUR PASSWORD"
                         />
                     </div>
                     <div className='flex items-center justify-between'>

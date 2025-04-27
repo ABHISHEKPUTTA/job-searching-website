@@ -22,7 +22,7 @@ const Signup = () => {
         role: "",
         file: ""
     });
-    const {loading,user} = useSelector(store=>store.auth);
+    const { loading, user } = useSelector(store => store.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -34,6 +34,26 @@ const Signup = () => {
     }
     const submitHandler = async (e) => {
         e.preventDefault();
+
+        if (!input.email.trim()) {
+            toast.error("Email is required!");
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.email)) {
+            toast.error("Please enter a valid email address!");
+            return;
+        }
+        if (!input.password) {
+            toast.error("Password is required!");
+            return;
+        }
+        if (input.password.length < 6) {
+            toast.error("Password must be at least 6 characters!");
+            return;
+        }
+
+
         const formData = new FormData();    //formdata object
         formData.append("fullname", input.fullname);
         formData.append("email", input.email);
@@ -58,16 +78,16 @@ const Signup = () => {
             console.log(error);
             const errorMessage = error.response?.data?.message || "Something went wrong. Please try again.";
             toast.error(errorMessage);
-        } finally{
+        } finally {
             dispatch(setLoading(false));
         }
     }
 
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (user) {
             navigate("/");
         }
-    },[])
+    }, [])
     return (
         <div>
             <Navbar />
@@ -81,7 +101,7 @@ const Signup = () => {
                             value={input.fullname}
                             name="fullname"
                             onChange={changeEventHandler}
-                            placeholder="abhishek"
+                            placeholder="ENTER YOUR FULL NAME"
                         />
                     </div>
                     <div className='my-2'>
@@ -91,7 +111,7 @@ const Signup = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="abhi@gmail.com"
+                            placeholder="ENTER YOUR EMAIL"
                         />
                     </div>
                     <div className='my-2'>
@@ -101,7 +121,7 @@ const Signup = () => {
                             value={input.phoneNumber}
                             name="phoneNumber"
                             onChange={changeEventHandler}
-                            placeholder="8080808080"
+                            placeholder="ENTER YOUR PHONE NUMBER"
                         />
                     </div>
                     <div className='my-2'>
@@ -111,7 +131,7 @@ const Signup = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="********"
+                            placeholder="ENTER YOUR PASSWORD"
                         />
                     </div>
                     <div className='flex items-center justify-between'>

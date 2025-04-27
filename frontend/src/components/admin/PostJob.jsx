@@ -77,14 +77,15 @@ const PostJob = () => {
                         </div>
                         <div>
                             <Label>Description</Label>
-                            <textarea
+                            <input
+                                type="text"
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
                                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 w-full border border-gray-300 rounded-md p-2"
                                 rows="4"
                                 maxLength="200"
-                                placeholder="Enter job description (max 00 characters)"
+                                placeholder=""
                             />
                             <p className="text-xs text-gray-500 text-right">{input.description.length}/200</p>
                         </div>
